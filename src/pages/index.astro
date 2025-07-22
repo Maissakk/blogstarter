@@ -7,44 +7,81 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="home-container">
+      <section class="intro">
+        <h1>Maissa Kobelé Keita</h1>
+        <p>
+          I’m a Computer Science & Applied Math student at UC Berkeley, blending tech, storytelling, and cultural memory. 
+          I’m currently working as an Operations & Data Systems Assistant at the Sutardja Center for Entrepreneurship & Technology (SCET), 
+          and I’m enrolled in Digital Humanities 150A, where I’m building a Guinean heritage archive project to preserve oral histories and family legacies.
+        </p>
+      </section>
+
+      <section class="current-projects">
+        <h2>Current Projects</h2>
+        <ul>
+          <li><strong>SCET @ Berkeley:</strong> Operations & systems support for entrepreneurship programs.</li>
+          <li><strong>Digital Humanities Archive:</strong> A community-powered platform documenting Guinean history and memory.</li>
+          <li><strong>Wavely App:</strong> A Chinese microlearning app focused on contextual vocabulary & sentence learning.</li>
+          <li><strong>CHI Research:</strong> Studying assistive input and equity in party-style video games.</li>
+        </ul>
+      </section>
+
+      <section class="about-me">
+        <h2>About Me</h2>
+        <p>
+          I’ve interned at Microsoft, FICO, AstraZeneca, and others, and I speak English, French, Susu, and basic Mandarin and Spanish. 
+          I’m passionate about tech for impact, learning systems, and African futurism. This site brings together my work across disciplines—from software and design to culture and research.
+        </p>
+      </section>
+
+      <section class="connect">
+        <h2>Let’s Connect</h2>
+        <p>
+          Feel free to browse the blog or reach out if you’re interested in collaborating. I’m open to roles in HCI, product, cross-cultural tech, and strategic innovation.
+        </p>
+        <p>
+          <a href="/blog">→ Read My Blog</a><br />
+          <a href="mailto:maissakobelekeita@gmail.com">→ Email Me</a><br />
+          <a href="https://www.linkedin.com/in/maissakk/" target="_blank" rel="noopener">→ LinkedIn</a>
+        </p>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>
+
+<style>
+  .home-container {
+    padding: 2rem 1rem;
+    max-width: 768px;
+    margin: auto;
+    line-height: 1.6;
+  }
+
+  h1, h2 {
+    color: var(--heading-color, #111);
+    margin-bottom: 0.5rem;
+  }
+
+  p, li {
+    color: var(--text-color, #444);
+  }
+
+  section {
+    margin-bottom: 2rem;
+  }
+
+  a {
+    color: var(--accent-color, #1e88e5);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
