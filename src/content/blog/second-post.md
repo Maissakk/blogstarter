@@ -1,7 +1,7 @@
 ---
 title: "Learning from Other Archives"
 description: "Week 3 journal — what I take from Camp Boiro and District Six for my own Guinea archive project"
-pubDate: "Aug 17 2025"
+pubDate: "Aug 16 2025"
 heroImage: "/blog-placeholder-4.jpg"
 tags: ["DH150A", "archives", "reflection", "community-memory"]
 ---
