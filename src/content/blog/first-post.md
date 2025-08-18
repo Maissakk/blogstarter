@@ -2,7 +2,7 @@
 title: "Why We Archive (and why DH matters for Guinea)"
 description:  "Week 1 journal — my take on DH, why archives matter, and where I’m headed"
 pubDate: "July 10 2025"
-heroImage: "/blog1dighumafricanproverb.jpg"
+heroImage: "/blog-placeholder-2.jpg"
 tags: ["DH150A", "reflection", "archives", "Guinea", "oral history"]
 ---
 

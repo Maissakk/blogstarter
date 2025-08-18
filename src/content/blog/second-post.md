@@ -1,16 +1,67 @@
 ---
-title: "Second post"
-description: "Lorem ipsum dolor sit amet"
-pubDate: "Jul 15 2022"
+title: "Learning from Other Archives"
+description: "Week 3 journal — what I take from Camp Boiro and District Six for my own Guinea archive project"
+pubDate: "Aug 17 2025"
 heroImage: "/blog-placeholder-4.jpg"
+tags: ["DH150A", "archives", "reflection", "community-memory"]
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+For this week, I looked at two archives that I think have lessons for what I want to do. One is close to home, the [Camp Boiro Memorial](https://www.camp-boiro.org/). The other is in South Africa, the [District Six Museum](https://www.districtsix.co.za/). Both are about memory, trauma, and how to keep history alive when official records often ignore or erase it.  
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc. Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra massa massa ultricies mi.
+### Camp Boiro Memorial  
+Camp Boiro was one of the darkest places in Guinea’s history, a detention center where so many people were tortured and killed under Sékou Touré’s regime. The website is an attempt to keep that memory alive.  
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
+**What I think works well:**  
+- It makes memory public and visible names are listed, stories are shared, and silence is broken.  
+- The structure (victims, perpetrators, charniers, bibliography) gives a sense of scope and seriousness.  
+- The categories (victims, perpetrators, mass graves, testimonies) make it clear this is a site of memory and mourning.  
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id cursus metus aliquam eleifend mi.
+**What feels missing:**  
+- Many entries are uneven, some with detail and others almost empty. It leaves the impression of fragments instead of a fuller picture.  
+- There’s little context about how stories were collected or by whom, which makes it harder to trust.  
+- Navigation feels flat. You can browse, but you don’t really see the connections between people, families, or events.  
+- It doesn’t feel very open to people adding new material. It reads more like a finished list than an ongoing living archive.  
+- I also worry about sustainability. If one day the site shuts down, where will all this memory go?  
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
+For me, Camp Boiro shows how important it is to record and publish memory, but also how important it is to make it feel alive, connected, and open to people.  
+
+### District Six Museum  
+District Six was a neighborhood in Cape Town where over 60,000 people were forcibly removed under apartheid. The [museum](https://www.districtsix.co.za/) and its digital archive document those lives and memories.  
+
+**What I think works well:**  
+- It is deeply community-centered. Former residents themselves are guides and contributors.  
+- It’s multimedia photos, maps, oral histories, even recipes. It reminds you that history is not just dates but lived experience.  
+- It connects memory to place. You can see where homes, mosques, and churches once stood, making the loss visible.  
+
+**What feels missing:**  
+- Some of the digital materials are hard to find, scattered across pages. It doesn’t always have one clear catalogue to explore.  
+- It depends a lot on the museum itself. If you’re not in Cape Town or don’t have strong internet, you miss a lot of it.  
+- It’s less accessible to people who might want to use the material in their own way, since the museum curates the experience tightly.  
+
+District Six works because it feels alive, rooted in community and multiple forms of memory. But it also shows how hard it is to make that accessible to everyone, especially outside the museum walls.  
+
+### What I Take Away  
+From Camp Boiro, I take the urgency. If we don’t record now, memory disappears. From District Six, I take the community and multimedia approach. For my Guinea project, I want both. I want Guineans to be able to see themselves in the archive, not just as names but as stories, voices, and traditions. I want something simple enough that someone with weak internet in Conakry could still access it, but also strong enough that scholars can use it years from now.  
+
+For my Guinea project, I want to:  
+- Collect stories but also connect them so people can see relationships across families and regions.  
+- Keep it open so Guineans can add their own materials.  
+- Use multiple forms of knowing oral history, photos, objects, testimonies not just written documents.  
+
+### Other DH Projects That Inspire Me  
+Looking beyond these two, I explored projects that experiment with mapping and relationships in history.  
+
+- [Kindred Britain](https://kindred.stanford.edu/#) and [Mapping the Republic of Letters](http://republicofletters.stanford.edu) show how you can visualize networks of people, letters, and knowledge across time. They made me think of how Guinean families and cultural figures could also be mapped to show connections beyond state borders.  
+- [Mapping Haitian History](https://www.mappinghaitianhistory.com) and [Mapping the Haitian Revolution](https://www.mappinghaitianrevolution.com) use geography as an entry point into memory and history. This inspires me to think about Guinea’s regional histories and migrations not just as stories, but as maps people can explore.  
+- [African Digital Heritage](https://africandigitalheritage.org) reminded me that this work is already happening across Africa. They push for community-centered archives and highlight that digital tools should serve local people first.  
+
+### For More Reading  
+- [Camp Boiro Memorial](https://www.camp-boiro.org/)  
+- [District Six Museum](https://www.districtsix.co.za/)  
+- [Kindred Britain](https://kindred.stanford.edu/#)  
+- [Mapping the Republic of Letters](http://republicofletters.stanford.edu)  
+- [Mapping Haitian History](https://www.mappinghaitianhistory.com)  
+- [Mapping the Haitian Revolution](https://www.mappinghaitianrevolution.com)  
+- [African Digital Heritage](https://africandigitalheritage.org)  
+- Michel-Rolph Trouillot, *Silencing the Past*  
+- Saidiya Hartman, *Venus in Two Acts*  
