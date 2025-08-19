@@ -1,0 +1,1044 @@
+---
+// No layout import needed - this is a standalone page
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Griots: Guinea Heritage Initiative | Maïssa Kobelé Keita</title>
+  <meta name="description" content="Community-powered platform documenting Guinean history and memory through family archives, oral histories, and cultural preservation">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #ffffff;
+      overflow-x: hidden;
+      background: #0a0a0a;
+    }
+
+    /* Navigation - Simple & Clean */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(26, 26, 46, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ff7730;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a:hover {
+      color: #ff7730;
+    }
+
+    /* Hero Section with Animated Background */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 48, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(7, 142, 104, 0.2) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .hero-content {
+      text-align: center;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff7730, #ff4757, #5f27cd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+
+    .cta-button {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #ff7730, #ff4757);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: fadeInUp 1s ease-out 0.6s both;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 119, 48, 0.3);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Main Content Sections */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 60px;
+      background: linear-gradient(135deg, #ffffff, #a4a4a4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #ccc;
+      margin-bottom: 4rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+
+    /* Project Overview Grid */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .overview-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .overview-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(95, 39, 205, 0.2);
+    }
+
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #ff7730, #ff4757);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: white;
+    }
+
+    .card-description {
+      opacity: 0.8;
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    /* Timeline Styles */
+    .timeline-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 2rem;
+    }
+
+    .timeline-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 30px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, #ff7730, #5f27cd);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 80px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 20px;
+      width: 22px;
+      height: 22px;
+      background: linear-gradient(135deg, #ff7730, #ff4757);
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(255, 119, 48, 0.5);
+    }
+
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-left: 4px solid #ff7730;
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 25px rgba(255, 119, 48, 0.2);
+    }
+
+    .timeline-year {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ff7730;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .timeline-description {
+      color: #ccc;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .urgency-indicator {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .urgency-indicator.critical {
+      background: linear-gradient(135deg, #ff4757, #ff3838);
+      color: white;
+    }
+
+    .urgency-indicator.high {
+      background: linear-gradient(135deg, #ff7730, #ff6b35);
+      color: white;
+    }
+
+    .urgency-indicator.medium {
+      background: linear-gradient(135deg, #ffa502, #ff9500);
+      color: white;
+    }
+
+    .urgency-indicator.action {
+      background: linear-gradient(135deg, #2ed573, #1dd1a1);
+      color: white;
+    }
+
+    /* Interactive Map Section */
+    .map-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 4rem;
+    }
+
+    .map-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .map-header h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: white;
+    }
+
+    .map-description {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .map-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .map-visual {
+      height: 400px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-placeholder {
+      font-size: 1.2rem;
+      text-align: center;
+      opacity: 0.7;
+      z-index: 2;
+      color: white;
+    }
+
+    .map-bg-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 119, 48, 0.03) 35px, rgba(255, 119, 48, 0.03) 70px);
+    }
+
+    .map-content {
+      padding: 1rem;
+    }
+
+    .map-features {
+      list-style: none;
+    }
+
+    .map-features li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .map-features li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff7730, #ff4757);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .map-features strong {
+      color: white;
+    }
+
+    .map-features small {
+      color: #ccc;
+    }
+
+    /* Methodology Section */
+    .methodology {
+      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+    }
+
+    .methodology-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .scholarly-framework {
+      margin-bottom: 3rem;
+    }
+
+    .scholarly-framework h3,
+    .audience-section h3,
+    .call-to-action-text h3 {
+      color: #ff7730;
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .scholarly-framework p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .methodology-highlight {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin: 2rem 0;
+    }
+
+    .methodology-highlight h4 {
+      color: #ff7730;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .methodology-highlight p {
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .audience-section {
+      margin-bottom: 3rem;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .audience-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-left: 4px solid #ff7730;
+    }
+
+    .audience-card h4 {
+      color: white;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .audience-card p {
+      color: #ccc;
+      line-height: 1.6;
+    }
+
+    .call-to-action-text {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2.5rem;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .call-to-action-text p {
+      font-size: 1.2rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+
+    /* Partnership Section */
+    .partnership {
+      background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 100%);
+    }
+
+    .partnership-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .partner-card {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(95, 39, 205, 0.2);
+    }
+
+    .partner-logo {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #ff7730, #ff4757);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .partner-name {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .partner-role {
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /* Call to Action Section */
+    .cta-section {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      text-align: center;
+    }
+
+    .cta-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: white;
+    }
+
+    .cta-description {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      color: #ccc;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ff7730, #ff4757);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 119, 48, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid #ff7730;
+    }
+
+    .btn-secondary:hover {
+      background: #ff7730;
+      transform: translateY(-3px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .hero {
+        padding: 4rem 1rem;
+        margin-top: 80px;
+      }
+
+      .map-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-container::before {
+        left: 20px;
+      }
+
+      .timeline-item {
+        padding-left: 50px;
+      }
+
+      .timeline-item::before {
+        left: 9px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section {
+        padding: 3rem 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .partnership-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+    }
+
+    /* Scroll Animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="/" class="logo">Maïssa Kobelé Keita</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/heritage">Heritage Project</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <h1>Digital Griots</h1>
+        <p class="hero-subtitle">Preserving Guinea's Heritage Through Community-Controlled Digital Archives</p>
+        <a href="#timeline" class="cta-button">Explore the Journey</a>
+      </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="section" id="explore">
+      <div class="container">
+        <h2 class="section-title fade-in">Preserving Guinea's Living Memory</h2>
+        <p class="section-subtitle fade-in">A community-led digital heritage initiative that empowers families to document, preserve, and share their stories while contributing to Guinea's collective historical record.</p>
+        
+        <div class="overview-grid">
+          <div class="overview-card fade-in">
+            <div class="card-icon">🎵</div>
+            <h3 class="card-title">Oral Traditions</h3>
+            <p class="card-description">Recording elder stories, traditional songs, and cultural knowledge in Susu, Pular, Malinké, and French to preserve multilingual heritage.</p>
+          </div>
+
+          <div class="overview-card fade-in">
+            <div class="card-icon">📸</div>
+            <h3 class="card-title">Family Archives</h3>
+            <p class="card-description">Digitizing photographs, documents, and personal artifacts that tell the story of families across Guinea's regions and global diaspora.</p>
+          </div>
+
+          <div class="overview-card fade-in">
+            <div class="card-icon">🗺️</div>
+            <h3 class="card-title">Cultural Geography</h3>
+            <p class="card-description">Mapping the places that matter—from village origins to diaspora communities—showing how culture travels and adapts across borders.</p>
+          </div>
+
+          <div class="overview-card fade-in">
+            <div class="card-icon">🤝</div>
+            <h3 class="card-title">Community Networks</h3>
+            <p class="card-description">Understanding how cultural knowledge flows through family networks, community organizations, and intergenerational relationships.</p>
+          </div>
+
+          <div class="overview-card fade-in">
+            <div class="card-icon">🛠️</div>
+            <h3 class="card-title">Digital Tools</h3>
+            <p class="card-description">Creating accessible, community-controlled methods for heritage preservation that respect cultural protocols and family ownership.</p>
+          </div>
+
+          <div class="overview-card fade-in">
+            <div class="card-icon">🌱</div>
+            <h3 class="card-title">Future Generations</h3>
+            <p class="card-description">Building sustainable practices that ensure cultural heritage remains vibrant and accessible for children growing up in diaspora communities.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline: Living Memory Under Threat -->
+    <section class="section" id="timeline">
+      <div class="container">
+        <h2 class="section-title fade-in">Living Memory Under Threat</h2>
+        <p class="section-subtitle fade-in">The witnesses to Guinea's colonial period, independence, and early nationhood are aging. Their stories—and the cultural knowledge they carry—face an urgent preservation crisis.</p>
+        
+        <div class="timeline-section fade-in">
+          <div class="timeline-container">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">1920s-1940s</div>
+                <h3 class="timeline-title">Colonial Period Witnesses</h3>
+                <p class="timeline-description">People born during French colonial rule are now 80-100+ years old. They witnessed forced labor, traditional governance systems, and the preservation of oral traditions under colonial pressure.</p>
+                <div class="urgency-indicator critical">Critical: Ages 80-100+</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">1958</div>
+                <h3 class="timeline-title">Independence Generation</h3>
+                <p class="timeline-description">Witnesses to Guinea's historic "Non" vote and independence celebration. Now 65-85 years old, they remember the euphoria of freedom and the cultural renaissance that followed.</p>
+                <div class="urgency-indicator high">High Priority: Ages 65-85</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">1960s-1970s</div>
+                <h3 class="timeline-title">Sékou Touré Era</h3>
+                <p class="timeline-description">Adults during Guinea's radical socialist experiment, including government officials, cultural revolutionaries, and ordinary citizens who navigated dramatic social changes. Ages 55-75 today.</p>
+                <div class="urgency-indicator medium">Medium: Ages 55-75</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2021</div>
+                <h3 class="timeline-title">Scholar Archive Loss</h3>
+                <p class="timeline-description">Fire destroys Djibril Tamsir Niane's personal library, including irreplaceable manuscripts and documents on Guinea's oral traditions. Living memory becomes even more precious as personal archives disappear.</p>
+                <div class="urgency-indicator critical">Crisis Point</div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <div class="timeline-year">2020s</div>
+                <h3 class="timeline-title">Preservation Projects</h3>
+                <p class="timeline-description">Efforts like the Syliphone Music Archives and community-led documentation initiatives work to preserve what remains of Guinea's cultural heritage.</p>
+                <div class="urgency-indicator action">Taking Action</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="section">
+      <div class="container">
+        <div class="map-section fade-in">
+          <div class="map-header">
+            <h3>Conakry's Memory Landscape</h3>
+            <p class="map-description">Mapping the places where Guinea's history lives—from government buildings to neighborhood schools, each location holds stories that deserve preservation.</p>
+          </div>
+          <div class="map-container">
+            <div class="map-visual">
+              <div class="map-bg-pattern"></div>
+              <div class="map-placeholder">
+                🗺️<br>
+                Interactive Conakry Heritage Map<br>
+                <small>Historical sites & community stories</small>
+              </div>
+            </div>
+            <div class="map-content">
+              <ul class="map-features">
+                <li>
+                  <div class="feature-icon">🏛️</div>
+                  <div>
+                    <strong>National Library</strong><br>
+                    <small>Institutional partnership for heritage preservation</small>
+                  </div>
+                </li>
+                <li>
+                  <div class="feature-icon">🎵</div>
+                  <div>
+                    <strong>Syliphone Archives</strong><br>
+                    <small>Preserving Guinea's golden age of music</small>
+                  </div>
+                </li>
+                <li>
+                  <div class="feature-icon">🏫</div>
+                  <div>
+                    <strong>Historic Schools</strong><br>
+                    <small>Educational institutions that shaped generations</small>
+                  </div>
+                </li>
+                <li>
+                  <div class="feature-icon">🏘️</div>
+                  <div>
+                    <strong>Neighborhood Stories</strong><br>
+                    <small>Community memories and local histories</small>
+                  </div>
+                </li>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="section methodology" id="methodology">
+      <div class="container">
+        <h2 class="section-title fade-in">Scholarly Foundation & Community Method</h2>
+        <div class="methodology-content fade-in">
+          <div class="scholarly-framework">
+            <h3>Theoretical Grounding</h3>
+            <p>This project builds on <strong>Michelle Caswell's</strong> work on community archives and symbolic annihilation, arguing that marginalized communities must control their own heritage narratives. Following <strong>Jarrett Drake's</strong> critique of archival power structures, we center community ownership over institutional extraction.</p>
+            
+            <div class="methodology-highlight">
+              <h4>Community-Controlled Methodology</h4>
+              <p>Inspired by the <strong>Archivist in a Backpack</strong> model, families retain ownership of their stories • Multilingual preservation respects linguistic diversity • Digital tools are accessible and sustainable • Youth and elders collaborate as knowledge partners • Cultural protocols guide all documentation</p>
+            </div>
+
+            <p>This approach challenges traditional archival practices that often extract stories from communities without returning agency or access. Instead, we create <strong>participatory infrastructure</strong> where families build their own archives while contributing to collective memory.</p>
+          </div>
+
+          <div class="audience-section">
+            <h3>Audience & Impact</h3>
+            <div class="audience-grid">
+              <div class="audience-card">
+                <h4>Public Audience: Guinea Diaspora Families</h4>
+                <p>Guinean families worldwide who want accessible tools to preserve their heritage, especially 2nd/3rd generation youth seeking connection to ancestral culture and elders concerned about knowledge loss.</p>
+              </div>
+              <div class="audience-card">
+                <h4>Scholarly Audience: Digital Humanities & Postcolonial Studies</h4>
+                <p>Researchers studying community archives, digital preservation in Global South contexts, and decolonizing archival practices. Contributes methodology for ethical heritage documentation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="call-to-action-text">
+            <h3>Call to Action</h3>
+            <p><strong>Join the preservation effort before it's too late.</strong> Contact us to participate in documentation training, contribute your family's story, or partner with our community-led methodology. Every story preserved strengthens Guinea's collective memory for future generations.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="section partnership">
+      <div class="container">
+        <h2 class="section-title fade-in">Building with Community</h2>
+        <div class="partnership-grid">
+          <div class="partner-card fade-in">
+            <div class="partner-logo">🏛️</div>
+            <h4 class="partner-name">Guinea National Library</h4>
+            <p class="partner-role">Institutional partnership for archive integration</p>
+          </div>
+          <div class="partner-card fade-in">
+            <div class="partner-logo">👥</div>
+            <h4 class="partner-name">Diaspora Communities</h4>
+            <p class="partner-role">Family networks across global communities</p>
+          </div>
+          <div class="partner-card fade-in">
+            <div class="partner-logo">🎓</div>
+            <h4 class="partner-name">UC Berkeley DH</h4>
+            <p class="partner-role">Academic methodology and digital infrastructure</p>
+          </div>
+          <div class="partner-card fade-in">
+            <div class="partner-logo">🌍</div>
+            <h4 class="partner-name">Community Elders</h4>
+            <p class="partner-role">Knowledge keepers and storytelling guides</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-content fade-in">
+          <h2 class="cta-title">Explore the Archive</h2>
+          <p class="cta-description">
+            Visit our growing collection of family stories, historical documents, and cultural materials that showcase Guinea's rich heritage across generations and borders.
+          </p>
+          <div class="cta-buttons">
+            <a href="https://guineaarchive.omeka.net" class="btn btn-primary" target="_blank">Browse Archive Collection</a>
+            <a href="mailto:maissa@mnkvision.com" class="btn btn-secondary">Join the Initiative</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Add click interactions to cards
+    document.querySelectorAll('.overview-card, .partner-card').forEach(card => {
+      card.addEventListener('click', function() {
+        this.style.transform = 'translateY(-10px) scale(0.98)';
+        setTimeout(() => {
+          this.style.transform = 'translateY(-10px) scale(1)';
+        }, 150);
+      });
+    });
+  </script>
+</body>
+</html>
