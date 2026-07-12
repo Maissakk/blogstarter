@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonjour Clara!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean:#1B6B6B;
+    --ocean-deep:#0F4C4C;
+    --aqua:#5EC9C4;
+    --coral:#FF8C69;
+    --sand:#FFF8ED;
+    --sun:#FFC94D;
+    --plum:#7A6BA6;
+    --ink:#1F2937;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Quicksand', sans-serif;
+    background:var(--sand);
+    color:var(--ink);
+    -webkit-tap-highlight-color:transparent;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', sans-serif;
+  }
+
+  /* ---------- NAV ---------- */
+  .topbar{
+    background:var(--ocean);
+    padding:18px 20px 14px;
+    color:var(--white);
+    position:sticky; top:0; z-index:50;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  }
+  .topbar h1{
+    margin:0 0 12px 0;
+    font-size:22px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding-bottom:2px;
+    scrollbar-width:none;
+  }
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    flex:0 0 auto;
+    background:rgba(255,255,255,0.14);
+    border:none;
+    color:var(--white);
+    padding:10px 16px;
+    border-radius:999px;
+    font-family:'Quicksand', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background 0.2s, transform 0.15s;
+  }
+  .tab-btn:active{ transform:scale(0.96); }
+  .tab-btn.active{
+    background:var(--sun);
+    color:var(--ocean-deep);
+  }
+
+  main{ max-width:780px; margin:0 auto; padding:22px 18px 80px; }
+  .page{ display:none; animation:fadeIn 0.35s ease; }
+  .page.active{ display:block; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  /* ---------- HOME ---------- */
+  .hero{
+    background:linear-gradient(160deg, var(--aqua), var(--ocean));
+    border-radius:28px;
+    padding:28px 22px;
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+    margin-bottom:22px;
+  }
+  .hero h2{ margin:0 0 6px; font-size:26px; }
+  .hero p{ margin:0; opacity:0.95; font-size:15px; }
+  .bubble{
+    position:absolute; border-radius:50%;
+    background:rgba(255,255,255,0.18);
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+
+  .grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .card{
+    background:var(--white);
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:transform 0.15s, border-color 0.15s;
+    text-align:center;
+  }
+  .card:active{ transform:scale(0.97); }
+  .card .emoji{ font-size:36px; display:block; margin-bottom:8px; }
+  .card h3{ margin:0 0 4px; font-size:16px; color:var(--ocean-deep); }
+  .card p{ margin:0; font-size:12px; color:#6b7280; }
+
+  .word-of-day{
+    background:var(--white);
+    border-radius:20px;
+    padding:16px 18px;
+    margin-top:16px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border-left:6px solid var(--sun);
+  }
+  .word-of-day .w{ font-family:'Baloo 2'; font-size:20px; color:var(--ocean-deep); }
+  .word-of-day .d{ font-size:13px; color:#6b7280; }
+  .wod-label{ font-size:11px; font-weight:700; color:var(--coral); text-transform:uppercase; letter-spacing:0.5px; margin-bottom:2px; }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-head{ margin-bottom:16px; }
+  .section-head h2{ margin:0 0 4px; color:var(--ocean-deep); font-size:24px; }
+  .section-head p{ margin:0; color:#6b7280; font-size:14px; }
+
+  /* ---------- READER ---------- */
+  .book{
+    background:var(--white);
+    border-radius:24px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    overflow:hidden;
+  }
+  .book-page{
+    display:none;
+    padding:26px 22px;
+    min-height:280px;
+  }
+  .book-page.active{ display:block; }
+  .book-page .scene{ font-size:60px; text-align:center; margin-bottom:14px; }
+  .book-page .story-text{ font-size:18px; line-height:1.7; color:var(--ink); }
+  .book-page .story-text .new-word{
+    background:rgba(255,201,77,0.35);
+    padding:1px 6px;
+    border-radius:6px;
+    font-weight:700;
+    cursor:pointer;
+    border-bottom:2px dashed var(--coral);
+  }
+  .book-nav{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 20px;
+    background:var(--sand);
+    border-top:1px solid #eee;
+  }
+  .nav-btn{
+    background:var(--ocean);
+    color:white; border:none; border-radius:14px;
+    padding:10px 18px; font-family:'Quicksand'; font-weight:700;
+    font-size:14px; cursor:pointer;
+  }
+  .nav-btn:disabled{ opacity:0.3; }
+  .page-dots{ display:flex; gap:6px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:#d1d5db; }
+  .dot.active{ background:var(--ocean); width:20px; border-radius:6px; transition:all 0.2s;}
+
+  .comprehension{
+    margin-top:16px;
+    background:var(--white);
+    border-radius:18px;
+    padding:16px 18px;
+  }
+  .comprehension h4{ margin:0 0 10px; color:var(--ocean-deep); }
+  .comprehension .q{ margin-bottom:10px; font-size:14px; }
+  .comprehension input[type=text]{
+    width:100%; padding:8px 10px; border-radius:10px; border:1.5px solid #e5e7eb;
+    font-family:'Quicksand'; font-size:14px; margin-top:4px;
+  }
+  .q-mcq{ margin-bottom:16px; }
+  .q-mcq:last-child{ margin-bottom:0; }
+  .q-text{ font-size:14px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+  .q-options{ display:flex; flex-direction:column; gap:8px; }
+  .q-opt-btn{
+    text-align:left; padding:10px 14px; border-radius:12px; border:1.5px solid #e5e7eb;
+    background:var(--sand); font-family:'Quicksand'; font-size:14px; cursor:pointer;
+  }
+  .q-opt-btn.correct{ background:#D1FAE5; border-color:#10B981; }
+  .q-opt-btn.wrong{ background:#FEE2E2; border-color:#EF4444; }
+
+  .vocab-add{
+    margin-top:16px;
+    background:var(--white);
+    border-radius:18px;
+    padding:16px 18px;
+    border:2px dashed var(--sun);
+  }
+  .vocab-add h4{ margin:0 0 4px; color:var(--ocean-deep); }
+  .vocab-hint{ margin:0 0 12px; font-size:13px; color:#6b7280; }
+  .form-placeholder{ position:relative; }
+  .form-placeholder iframe{ border-radius:12px; background:#f3f4f6; }
+  .placeholder-note{
+    text-align:center; font-size:11px; color:#9ca3af; margin-top:6px; font-style:italic;
+  }
+
+  .shelf{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .book-cover{
+    background:var(--white); border-radius:18px; padding:20px 14px; text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.06); cursor:pointer; border:2px solid transparent;
+  }
+  .book-cover:active{ transform:scale(0.97); }
+  .book-cover .cover-emoji{ font-size:44px; display:block; margin-bottom:8px; }
+  .book-cover h4{ margin:0 0 4px; font-size:14px; color:var(--ocean-deep); font-family:'Baloo 2'; }
+  .book-cover p{ margin:0; font-size:11px; color:#9ca3af; }
+  .book-cover.locked{ opacity:0.55; }
+
+  .sci-quiz-card{
+    background:var(--white); border-radius:18px; padding:18px; margin-bottom:14px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+  .sci-quiz-card h4{ margin:0 0 10px; color:var(--ocean-deep); }
+  .sci-tf-row{ display:flex; gap:10px; margin-top:10px; }
+  .tf-btn{
+    flex:1; padding:12px; border-radius:12px; border:2px solid #e5e7eb; background:var(--sand);
+    font-family:'Quicksand'; font-weight:700; font-size:14px; cursor:pointer;
+  }
+  .tf-btn.correct{ background:#D1FAE5; border-color:#10B981; }
+  .tf-btn.wrong{ background:#FEE2E2; border-color:#EF4444; }
+  .sci-reveal{ margin-top:10px; font-size:13px; color:#374151; display:none; }
+  .sci-reveal.show{ display:block; }
+
+  /* ---------- MATHS ---------- */
+  .math-card{
+    background:var(--white); border-radius:20px; padding:20px; text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+  .problem{ font-family:'Baloo 2'; font-size:34px; color:var(--ocean-deep); margin:16px 0; }
+  .answer-choices{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  .choice-btn{
+    background:var(--sand); border:2px solid #e5e7eb; border-radius:14px;
+    padding:14px; font-size:20px; font-family:'Baloo 2'; cursor:pointer;
+    color:var(--ocean-deep);
+  }
+  .choice-btn.correct{ background:#D1FAE5; border-color:#10B981; }
+  .choice-btn.wrong{ background:#FEE2E2; border-color:#EF4444; }
+  .score-line{ font-size:14px; color:#6b7280; margin-top:14px; }
+
+  /* ---------- PET GAME ---------- */
+  .pet-stage{
+    background:linear-gradient(180deg, #BFE8E6, #FFF8ED);
+    border-radius:22px;
+    height:260px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:16px;
+  }
+  .pet-display{ font-size:110px; position:relative; transition:transform 0.2s; filter:drop-shadow(0 8px 6px rgba(0,0,0,0.1)); }
+  .pet-accessory{ position:absolute; font-size:40px; }
+  .swatch-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+  .swatch-label{ font-size:13px; font-weight:700; color:var(--ocean-deep); margin-bottom:6px; }
+  .swatch{
+    width:44px; height:44px; border-radius:12px; border:2px solid transparent;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    font-size:20px; background:var(--white); box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  }
+  .swatch.selected{ border-color:var(--ocean); }
+  .swatch.locked{ background:#f3f4f6; opacity:0.75; position:relative; }
+  .unlock-tag{
+    position:absolute; bottom:-8px; right:-8px;
+    background:var(--sun); color:var(--ocean-deep);
+    font-size:9px; font-weight:700; padding:2px 4px;
+    border-radius:6px; font-family:'Quicksand';
+  }
+  .star-popup{
+    position:fixed; top:80px; left:50%; transform:translateX(-50%);
+    background:var(--sun); color:var(--ocean-deep); font-family:'Baloo 2';
+    font-weight:700; font-size:18px; padding:10px 20px; border-radius:999px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.15); z-index:100;
+    animation:popUp 1s ease forwards;
+  }
+  @keyframes popUp{
+    0%{ opacity:0; transform:translateX(-50%) translateY(10px); }
+    20%{ opacity:1; transform:translateX(-50%) translateY(-6px); }
+    80%{ opacity:1; transform:translateX(-50%) translateY(-6px); }
+    100%{ opacity:0; transform:translateX(-50%) translateY(-20px); }
+  }
+  .unlock-overlay{
+    position:fixed; inset:0; background:rgba(15,76,76,0.55);
+    display:flex; align-items:center; justify-content:center; z-index:200;
+    animation:fadeIn 0.25s ease;
+  }
+  .unlock-card{
+    background:var(--white); border-radius:26px; padding:32px 28px;
+    text-align:center; max-width:280px; box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  }
+  .unlock-confetti{ font-size:36px; margin-bottom:8px; }
+  .unlock-title{ font-family:'Baloo 2'; font-size:15px; color:#6b7280; margin-bottom:4px; }
+  .unlock-item{ font-family:'Baloo 2'; font-size:24px; color:var(--ocean-deep); margin-bottom:18px; font-weight:700; }
+
+  /* ---------- VIDEOS / SCIENCE ---------- */
+  .video-wrap{ border-radius:18px; overflow:hidden; margin-bottom:14px; box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+  .video-wrap iframe{ width:100%; aspect-ratio:16/9; border:none; display:block; }
+  .science-card{
+    background:var(--white); border-radius:18px; padding:18px; margin-bottom:12px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.05);
+  }
+  .science-card h4{ margin:0 0 8px; color:var(--ocean-deep); }
+  .science-card p{ margin:0; font-size:14px; line-height:1.6; color:#374151; }
+
+  /* ---------- PROGRESS ---------- */
+  .tank{
+    background:linear-gradient(180deg, #4FB3AE, #0F4C4C);
+    border-radius:24px; height:220px; position:relative; overflow:hidden; margin-bottom:16px;
+  }
+  .tank .swim{ position:absolute; font-size:28px; animation:swim 8s linear infinite; }
+  @keyframes swim{ from{ left:-40px; } to{ left:105%; } }
+  .task-list{ background:var(--white); border-radius:18px; padding:6px 16px; }
+  .task-item{ display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid #f0f0f0; }
+  .task-item:last-child{ border-bottom:none; }
+  .task-check{
+    width:26px; height:26px; border-radius:8px; border:2px solid var(--ocean);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex:0 0 auto;
+    font-size:15px; color:transparent;
+  }
+  .task-check.done{ background:var(--ocean); color:white; }
+  .task-text{ font-size:14px; }
+  .task-text.done{ text-decoration:line-through; color:#9ca3af; }
+  .star-count{ text-align:center; font-family:'Baloo 2'; font-size:20px; color:var(--sun); margin-bottom:10px; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h1>🐠 Mon Monde Français</h1>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button id="langToggle" onclick="toggleLang()" style="background:rgba(255,255,255,0.18); border:none; color:white; padding:6px 12px; border-radius:999px; font-family:'Quicksand'; font-weight:700; font-size:13px; cursor:pointer;">EN</button>
+      <div id="starBadge" style="background:rgba(255,255,255,0.18); padding:6px 14px; border-radius:999px; font-family:'Baloo 2'; font-weight:700; font-size:15px;">⭐ 0</div>
+    </div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+</div>
+
+<main>
+
+  <!-- ACCUEIL -->
+  <section class="page active" data-page="accueil">
+    <div class="hero">
+      <div class="bubble" style="width:60px;height:60px; top:10px; right:20px; animation-delay:0s;"></div>
+      <div class="bubble" style="width:30px;height:30px; top:70px; right:80px; animation-delay:1s;"></div>
+      <div class="bubble" style="width:20px;height:20px; top:40px; right:130px; animation-delay:2s;"></div>
+      <h2 data-fr="Bonjour ! 👋" data-en="Hello! 👋">Bonjour ! 👋</h2>
+      <p data-fr="Prête pour une nouvelle aventure en français aujourd'hui ?" data-en="Ready for a new French adventure today?">Prête pour une nouvelle aventure en français aujourd'hui ?</p>
+    </div>
+    <div class="grid">
+      <div class="card" onclick="goTo('lecture')"><span class="emoji">📖</span><h3 data-fr="Lecture" data-en="Reading">Lecture</h3><p data-fr="Lis une histoire" data-en="Read a story">Lis une histoire</p></div>
+      <div class="card" onclick="goTo('maths')"><span class="emoji">🔢</span><h3 data-fr="Maths" data-en="Math">Maths</h3><p data-fr="Joue avec les nombres" data-en="Play with numbers">Joue avec les nombres</p></div>
+      <div class="card" onclick="goTo('animal')"><span class="emoji">🐶</span><h3 data-fr="Mon Animal" data-en="My Pet">Mon Animal</h3><p data-fr="Habille ton animal" data-en="Dress up your pet">Habille ton animal</p></div>
+      <div class="card" onclick="goTo('sciences')"><span class="emoji">🔬</span><h3 data-fr="Sciences" data-en="Science">Sciences</h3><p data-fr="Apprends et découvre" data-en="Learn and discover">Apprends et découvre</p></div>
+      <div class="card" onclick="goTo('videos')"><span class="emoji">🎬</span><h3 data-fr="Vidéos" data-en="Videos">Vidéos</h3><p data-fr="Regarde et écoute" data-en="Watch and listen">Regarde et écoute</p></div>
+      <div class="card" onclick="goTo('progres')"><span class="emoji">⭐</span><h3 data-fr="Mes Progrès" data-en="My Progress">Mes Progrès</h3><p data-fr="Vois tes étoiles" data-en="See your stars">Vois tes étoiles</p></div>
+    </div>
+    <div class="word-of-day">
+      <div>
+        <div class="wod-label" data-fr="Mot du jour" data-en="Word of the day">Mot du jour</div>
+        <div class="w" id="wodWord">🐟 ...</div>
+        <div class="d" id="wodMeaning">...</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LECTURE -->
+  <section class="page" data-page="lecture">
+    <div id="libraryView">
+      <div class="section-head">
+        <h2>📖 Ma Bibliothèque</h2>
+        <p data-fr="Choisis une histoire" data-en="Choose a story">Choisis une histoire</p>
+      </div>
+      <div class="shelf" id="shelf"></div>
+    </div>
+
+    <div id="readerView" style="display:none;">
+      <div class="section-head">
+        <button class="nav-btn" style="margin-bottom:10px;" onclick="closeReader()">← Retour à la bibliothèque</button>
+      </div>
+      <div class="book" id="book">
+        <div id="bookPagesContainer"></div>
+        <div class="book-nav">
+          <button class="nav-btn" id="prevBtn" onclick="turnPage(-1)">← Précédent</button>
+          <div class="page-dots" id="dots"></div>
+          <button class="nav-btn" id="nextBtn" onclick="turnPage(1)">Suivant →</button>
+        </div>
+      </div>
+      <div class="comprehension" id="comprehensionBox"></div>
+      <div class="vocab-add">
+        <h4>📝 Ajoute un nouveau mot à ton carnet</h4>
+        <p class="vocab-hint">Tu as vu un mot nouveau dans l'histoire ? Ajoute-le ici !</p>
+        <div class="form-placeholder">
+          <iframe src="https://docs.google.com/forms/d/e/PLACEHOLDER_FORM_ID/viewform?embedded=true" width="100%" height="420" frameborder="0">Chargement…</iframe>
+          <div class="placeholder-note">↑ Remplace ce lien par ton vrai Google Form une fois créé</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOCABULAIRE QUIZ -->
+  <section class="page" data-page="vocabquiz">
+    <div class="section-head">
+      <h2>🧠 Quiz de Vocabulaire</h2>
+      <p data-fr="Teste les mots que tu as appris" data-en="Test the words you've learned">Teste les mots que tu as appris</p>
+    </div>
+    <div class="math-card">
+      <div style="font-size:13px; color:#6b7280; font-weight:700;">QUESTION <span id="vqnum">1</span></div>
+      <div class="problem" id="vqproblem" style="font-size:22px;">Que veut dire "écailles" ?</div>
+      <div class="answer-choices" id="vqchoices" style="grid-template-columns:1fr;"></div>
+      <div class="score-line" id="vqscoreline">Score : 0 / 0</div>
+    </div>
+  </section>
+
+  <!-- GRAMMAIRE -->
+  <section class="page" data-page="grammaire">
+    <div class="section-head">
+      <h2>✏️ Grammaire</h2>
+      <p data-fr="Le ou la ? Mon ou ma ? Entraîne-toi !" data-en="Le or la? Mon or ma? Practice!">Le ou la ? Mon ou ma ? Entraîne-toi !</p>
+    </div>
+    <div class="math-card">
+      <div style="font-size:13px; color:#6b7280; font-weight:700;">QUESTION <span id="gqnum">1</span></div>
+      <div class="problem" id="gproblem" style="font-size:26px;">___ chien</div>
+      <div class="answer-choices" id="gchoices"></div>
+      <div class="score-line" id="gscoreline">Score : 0 / 0</div>
+    </div>
+  </section>
+
+  <!-- MATHS -->
+  <section class="page" data-page="maths">
+    <div class="section-head">
+      <h2>🔢 Maths</h2>
+      <p data-fr="Entraîne-toi aux tables de multiplication" data-en="Practice your multiplication tables">Entraîne-toi aux tables de multiplication</p>
+    </div>
+    <div class="math-card">
+      <div style="font-size:13px; color:#6b7280; font-weight:700;">QUESTION <span id="qnum">1</span></div>
+      <div class="problem" id="problem">3 × 4 = ?</div>
+      <div class="answer-choices" id="choices"></div>
+      <div class="score-line" id="scoreline">Score : 0 / 0</div>
+    </div>
+  </section>
+
+  <!-- MON ANIMAL -->
+  <section class="page" data-page="animal">
+    <div class="section-head">
+      <h2>🐶 Mon Animal</h2>
+      <p data-fr="Personnalise ton compagnon" data-en="Customize your companion">Personnalise ton compagnon</p>
+    </div>
+    <div class="pet-stage">
+      <div class="pet-display" id="petDisplay">🐠</div>
+    </div>
+    <div class="swatch-label">Choisis ton animal</div>
+    <div class="swatch-row" id="petTypeRow"></div>
+    <div class="swatch-label">Choisis une couleur</div>
+    <div class="swatch-row" id="colorRow"></div>
+    <div class="swatch-label">Ajoute un accessoire</div>
+    <div class="swatch-row" id="accessoryRow"></div>
+  </section>
+
+  <!-- SCIENCES -->
+  <section class="page" data-page="sciences">
+    <div class="section-head">
+      <h2>🔬 Sciences</h2>
+      <p data-fr="Vrai ou faux ? Teste tes connaissances !" data-en="True or false? Test what you know!">Vrai ou faux ? Teste tes connaissances !</p>
+    </div>
+    <div id="scienceQuizArea"></div>
+    <div class="section-head" style="margin-top:24px;">
+      <h3 style="color:var(--ocean-deep); font-size:18px;">🔍 Devine l'animal</h3>
+      <p>Lis les indices et devine !</p>
+    </div>
+    <div class="math-card" id="riddleCard">
+      <div id="riddleClues" style="font-size:15px; line-height:1.8; text-align:left;"></div>
+      <div class="answer-choices" id="riddleChoices" style="margin-top:16px;"></div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="page" data-page="videos">
+    <div class="section-head">
+      <h2>🎬 Vidéos & Podcasts</h2>
+      <p data-fr="Regarde et écoute en français" data-en="Watch and listen in French">Regarde et écoute en français</p>
+    </div>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/watch?v=6rXevWTMy00&list=PLNiYqMnAhCSg&pp=0gcJCe4COCosWNinsAgC" title="Playlist français" allowfullscreen></iframe>
+    </div>
+    <div class="science-card">
+      <h4>🎧 Podcast : Une histoire et Oli</h4>
+      <p>Une courte histoire à écouter chaque jour, parfaite pour le trajet ou avant de dormir.</p>
+    </div>
+  </section>
+
+  <!-- PROGRES -->
+  <section class="page" data-page="progres">
+    <div class="section-head">
+      <h2>⭐ Mes Progrès</h2>
+      <p data-fr="Coche chaque activité terminée" data-en="Check off each finished activity">Coche chaque activité terminée</p>
+    </div>
+    <div class="tank">
+      <div class="swim" style="top:30px; animation-delay:0s;">🐠</div>
+      <div class="swim" style="top:90px; animation-delay:2.5s;">🐟</div>
+      <div class="swim" style="top:150px; animation-delay:5s;">🐠</div>
+    </div>
+    <div class="star-count" id="starCount">⭐ 0 étoiles cette semaine</div>
+    <div class="task-list" id="taskList"></div>
+    <div class="vocab-add" style="margin-top:18px;">
+      <h4 data-fr="📋 As-tu terminé pour aujourd'hui ?" data-en="📋 Finished for today?">📋 As-tu terminé pour aujourd'hui ?</h4>
+      <p class="vocab-hint" data-fr="Remplis ce petit questionnaire avant de partir !" data-en="Fill out this short form before you go!">Remplis ce petit questionnaire avant de partir !</p>
+      <div class="form-placeholder">
+        <iframe src="https://docs.google.com/forms/d/e/PLACEHOLDER_RECAP_FORM_ID/viewform?embedded=true" width="100%" height="520" frameborder="0">Chargement…</iframe>
+        <div class="placeholder-note">↑ Remplace par ton vrai Google Form de récap (ce que tu as appris, ce qui était difficile)</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const pages = [
+  {id:'accueil', fr:'🏠 Accueil', en:'🏠 Home'},
+  {id:'lecture', fr:'📖 Lecture', en:'📖 Reading'},
+  {id:'vocabquiz', fr:'🧠 Vocabulaire', en:'🧠 Vocabulary'},
+  {id:'grammaire', fr:'✏️ Grammaire', en:'✏️ Grammar'},
+  {id:'maths', fr:'🔢 Maths', en:'🔢 Math'},
+  {id:'animal', fr:'🐶 Mon Animal', en:'🐶 My Pet'},
+  {id:'sciences', fr:'🔬 Sciences', en:'🔬 Science'},
+  {id:'videos', fr:'🎬 Vidéos', en:'🎬 Videos'},
+  {id:'progres', fr:'⭐ Progrès', en:'⭐ Progress'},
+];
+let currentLang = 'fr';
+const tabsEl = document.getElementById('tabs');
+pages.forEach(p=>{
+  const b = document.createElement('button');
+  b.className = 'tab-btn' + (p.id==='accueil' ? ' active' : '');
+  b.textContent = p.fr;
+  b.onclick = () => goTo(p.id);
+  b.dataset.id = p.id;
+  tabsEl.appendChild(b);
+});
+function toggleLang(){
+  currentLang = currentLang==='fr' ? 'en' : 'fr';
+  document.getElementById('langToggle').textContent = currentLang==='fr' ? 'EN' : 'FR';
+  pages.forEach(p=>{
+    const btn = tabsEl.querySelector(`[data-id="${p.id}"]`);
+    if(btn) btn.textContent = p[currentLang];
+  });
+  document.querySelectorAll('[data-fr][data-en]').forEach(el=>{
+    el.textContent = el.dataset[currentLang];
+  });
+}
+function goTo(id){
+  document.querySelectorAll('.page').forEach(el=>el.classList.toggle('active', el.dataset.page===id));
+  document.querySelectorAll('.tab-btn').forEach(el=>el.classList.toggle('active', el.dataset.id===id));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- STORY LIBRARY ---------- */
+const stories = [
+  {
+    id:'bulle', title:'Bulle le Poisson', emoji:'🐠', level:'Facile',
+    pages:[
+      {scene:'🐠🐕🐕', text:`Il était une fois un petit poisson rouge qui s'appelait Bulle. Bulle vivait dans un bel aquarium, avec deux chiens curieux qui le regardaient nager toute la journée.`},
+      {scene:'🐠💭', text:`Un matin, Bulle a remarqué quelque chose de nouveau : ses <span class="new-word" onclick="alert('écailles = les petites plaques brillantes sur la peau du poisson')">écailles</span> brillaient plus que d'habitude. Il était très fier !`},
+      {scene:'🐕🐕🐠', text:`Les deux chiens, Max et Luna, ont posé leur museau sur le verre de l'aquarium. "Regarde comme il brille !" a pensé Luna, en remuant la queue.`},
+      {scene:'☀️🐠', text:`C'était simplement le soleil qui entrait par la fenêtre et qui faisait <span class="new-word" onclick="alert('scintiller = briller doucement, comme des petites étoiles')">scintiller</span> les écailles de Bulle. Quel joli spectacle pour toute la famille !`},
+    ],
+    questions:[
+      {q:'Comment s\'appelle le poisson ?', options:['Bulle','Max','Luna'], correct:'Bulle'},
+      {q:'Pourquoi les écailles brillaient-elles ?', options:['À cause du soleil','À cause de la lune','À cause de la pluie'], correct:'À cause du soleil'}
+    ]
+  },
+  {
+    id:'promenade', title:'La Promenade de Max et Luna', emoji:'🐕', level:'Facile',
+    pages:[
+      {scene:'🐕🐕🌳', text:`Max et Luna adoraient leur promenade du matin. Ils couraient dans le parc en <span class="new-word" onclick="alert('reniflant = sentir avec le nez')">reniflant</span> chaque fleur et chaque feuille.`},
+      {scene:'🐿️🐕', text:`Soudain, Max a vu un écureuil grimper à un arbre. Il a aboyé très fort, mais l'écureuil était déjà trop haut pour l'attraper !`},
+      {scene:'🐕💧', text:`Luna, elle, préférait jouer près de la petite fontaine. Elle adorait <span class="new-word" onclick="alert('patauger = jouer dans l\\'eau peu profonde')">patauger</span> dans l'eau fraîche.`},
+      {scene:'🏠🐕🐕', text:`Après leur belle promenade, Max et Luna sont rentrés à la maison, fatigués mais heureux, prêts pour une bonne sieste.`},
+    ],
+    questions:[
+      {q:'Qu\'est-ce que Max a vu dans l\'arbre ?', options:['Un écureuil','Un oiseau','Un chat'], correct:'Un écureuil'},
+      {q:'Qu\'est-ce que Luna aime faire près de la fontaine ?', options:['Patauger','Dormir','Manger'], correct:'Patauger'}
+    ]
+  },
+  {
+    id:'poupees', title:'Les Poupées et le Thé', emoji:'🎀', level:'Facile',
+    pages:[
+      {scene:'🎀🎀☕', text:`Chaque samedi, les deux poupées préférées d'Emma organisaient un <span class="new-word" onclick="alert('goûter = petit repas l\\'après-midi')">goûter</span> imaginaire avec de petites tasses de thé.`},
+      {scene:'👗🎀', text:`Aujourd'hui, elles portaient leurs plus belles robes pour une occasion spéciale : l'anniversaire de la plus petite poupée.`},
+      {scene:'🎂🎀🎀', text:`Emma a dessiné un petit gâteau en papier et l'a posé au centre de la table. "Joyeux anniversaire !" a-t-elle chanté doucement.`},
+      {scene:'🌟🎀', text:`Les poupées ont "dansé" toute la soirée, et Emma a écrit l'histoire de cette belle fête dans son carnet.`},
+    ],
+    questions:[
+      {q:'Que font les poupées chaque samedi ?', options:['Un goûter imaginaire','Une promenade','Une bataille'], correct:'Un goûter imaginaire'},
+      {q:'Quelle était l\'occasion spéciale aujourd\'hui ?', options:['Un anniversaire','Un mariage','Une fête de fin d\'année'], correct:'Un anniversaire'}
+    ]
+  },
+  {
+    id:'ogre', title:'L\'Ogre et les Poupées Magiques', emoji:'👹', level:'6-8 ans',
+    pages:[
+      {scene:'👹🏰', text:`Dans une forêt lointaine vivait un ogre. Il avait l'air méchant, mais en réalité, il était très gentil et un peu timide.`},
+      {scene:'👹🎀', text:`Un jour, il a trouvé deux poupées abandonnées près d'un arbre. Il a décidé de les ramener chez lui pour en prendre soin.`},
+      {scene:'👹🍲🎀', text:`Chaque soir, l'ogre préparait une petite soupe pour "nourrir" les poupées, même s'il savait qu'elles ne mangeaient pas vraiment.`},
+      {scene:'❤️👹🎀', text:`Les enfants du village ont appris que l'ogre n'était pas du tout effrayant, juste très seul, et ils sont devenus ses amis.`},
+    ],
+    questions:[
+      {q:'Comment est vraiment l\'ogre ?', options:['Gentil et timide','Très méchant','Toujours en colère'], correct:'Gentil et timide'},
+      {q:'Qu\'est-ce que l\'ogre a trouvé dans la forêt ?', options:['Deux poupées','Un trésor','Un petit chien'], correct:'Deux poupées'}
+    ]
+  },
+];
+
+let currentPage = 0;
+
+function renderShelf(){
+  const shelf = document.getElementById('shelf');
+  shelf.innerHTML = '';
+  stories.forEach(s=>{
+    const c = document.createElement('div');
+    c.className = 'book-cover';
+    c.innerHTML = `<span class="cover-emoji">${s.emoji}</span><h4>${s.title}</h4><p>${s.level}</p>`;
+    c.onclick = ()=>openStory(s.id);
+    shelf.appendChild(c);
+  });
+}
+function openStory(id){
+  currentPage = 0;
+  const story = stories.find(s=>s.id===id);
+  const container = document.getElementById('bookPagesContainer');
+  container.innerHTML = story.pages.map((p,i)=>`
+    <div class="book-page ${i===0?'active':''}" data-p="${i}">
+      <div class="scene">${p.scene}</div>
+      <div class="story-text">${p.text}</div>
+    </div>
+  `).join('');
+  const compBox = document.getElementById('comprehensionBox');
+  compBox.innerHTML = `<h4>As-tu bien compris ?</h4>` + story.questions.map((qObj,i)=>`
+    <div class="q-mcq" id="qmcq-${i}">
+      <div class="q-text">${i+1}. ${qObj.q}</div>
+      <div class="q-options" id="qopts-${i}"></div>
+    </div>
+  `).join('');
+  story.questions.forEach((qObj,i)=>{
+    const optsEl = document.getElementById(`qopts-${i}`);
+    qObj.options.slice().sort(()=>Math.random()-0.5).forEach(opt=>{
+      const btn = document.createElement('button');
+      btn.className = 'q-opt-btn';
+      btn.textContent = opt;
+      btn.onclick = ()=>{
+        optsEl.querySelectorAll('button').forEach(b=>b.disabled=true);
+        if(opt === qObj.correct){ btn.classList.add('correct'); earnStar(); }
+        else{ btn.classList.add('wrong'); }
+      };
+      optsEl.appendChild(btn);
+    });
+  });
+
+  document.getElementById('libraryView').style.display = 'none';
+  document.getElementById('readerView').style.display = 'block';
+  setupDots(story.pages.length);
+  renderBook();
+}
+function closeReader(){
+  document.getElementById('readerView').style.display = 'none';
+  document.getElementById('libraryView').style.display = 'block';
+}
+function setupDots(count){
+  const dotsEl = document.getElementById('dots');
+  dotsEl.innerHTML = '';
+  for(let i=0;i<count;i++){
+    const d = document.createElement('div');
+    d.className = 'dot' + (i===0?' active':'');
+    dotsEl.appendChild(d);
+  }
+}
+function renderBook(){
+  const bookPages = document.querySelectorAll('#bookPagesContainer .book-page');
+  bookPages.forEach((el,i)=>el.classList.toggle('active', i===currentPage));
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active', i===currentPage));
+  document.getElementById('prevBtn').disabled = currentPage===0;
+  document.getElementById('nextBtn').disabled = currentPage===bookPages.length-1;
+}
+function turnPage(dir){
+  const bookPages = document.querySelectorAll('#bookPagesContainer .book-page');
+  currentPage = Math.max(0, Math.min(bookPages.length-1, currentPage+dir));
+  renderBook();
+}
+renderShelf();
+
+/* ---------- SCIENCE QUIZ (Vrai ou Faux) — aligned to CE2 "Questionner le monde" ---------- */
+const scienceFacts = [
+  {q:'L\'eau peut être solide, liquide et gazeuse.', a:true, explain:'Vrai ! Glace (solide), eau (liquide), vapeur (gaz) : ce sont les trois états de l\'eau.'},
+  {q:'Les plantes n\'ont pas besoin de lumière pour pousser.', a:false, explain:'Faux ! Les plantes ont besoin de lumière pour fabriquer leur énergie, on appelle ça la photosynthèse.'},
+  {q:'Il y a quatre saisons dans l\'année.', a:true, explain:'Vrai ! Printemps, été, automne, hiver.'},
+  {q:'Le cœur est un muscle qui fait circuler le sang.', a:true, explain:'Vrai ! Le cœur pompe le sang dans tout le corps, jour et nuit.'},
+  {q:'On a seulement 3 sens : voir, entendre, toucher.', a:false, explain:'Faux ! On a 5 sens : la vue, l\'ouïe, le toucher, le goût, et l\'odorat.'},
+  {q:'La Terre tourne autour du Soleil.', a:true, explain:'Vrai ! Ce voyage autour du Soleil dure une année complète.'},
+  {q:'Il faut trier ses déchets pour aider la planète.', a:true, explain:'Vrai ! Trier le papier, le verre et le plastique permet de les recycler au lieu de les jeter.'},
+  {q:'Les os grandissent tout seuls sans qu\'on ait besoin de bien manger.', a:false, explain:'Faux ! Une bonne alimentation (comme le calcium) aide les os à grandir et à rester solides.'},
+];
+function renderScienceQuiz(){
+  const area = document.getElementById('scienceQuizArea');
+  area.innerHTML = '';
+  scienceFacts.forEach((f,idx)=>{
+    const card = document.createElement('div');
+    card.className = 'sci-quiz-card';
+    card.innerHTML = `
+      <h4>${f.q}</h4>
+      <div class="sci-tf-row">
+        <button class="tf-btn" data-idx="${idx}" data-choice="true">Vrai</button>
+        <button class="tf-btn" data-idx="${idx}" data-choice="false">Faux</button>
+      </div>
+      <div class="sci-reveal" id="reveal-${idx}">${f.explain}</div>
+    `;
+    area.appendChild(card);
+  });
+  area.querySelectorAll('.tf-btn').forEach(btn=>{
+    btn.onclick = ()=>{
+      const idx = btn.dataset.idx;
+      const choice = btn.dataset.choice === 'true';
+      const fact = scienceFacts[idx];
+      const row = btn.parentElement;
+      row.querySelectorAll('.tf-btn').forEach(b=>b.disabled=true);
+      if(choice === fact.a){ btn.classList.add('correct'); earnStar(); }
+      else{ btn.classList.add('wrong'); }
+      document.getElementById(`reveal-${idx}`).classList.add('show');
+    };
+  });
+}
+renderScienceQuiz();
+
+/* ---------- DEVINE L'ANIMAL (riddle game) ---------- */
+const riddles = [
+  {clues:['Je vis dans l\'eau.','J\'ai des écailles.','Je n\'ai pas de pattes.'], answer:'Le poisson', options:['Le poisson','Le chien','L\'oiseau']},
+  {clues:['J\'ai quatre pattes.','J\'aime aboyer.','Je remue la queue quand je suis content.'], answer:'Le chien', options:['Le chat','Le chien','Le lapin']},
+  {clues:['Je vis dans la savane.','J\'ai un très long cou.','Je mange les feuilles des arbres.'], answer:'La girafe', options:['L\'éléphant','La girafe','Le zèbre']},
+];
+let riddleOrder = [];
+function shuffleRiddleOrder(){
+  riddleOrder = riddles.map((_,i)=>i).sort(()=>Math.random()-0.5);
+}
+let riddleIdx = 0;
+function newRiddle(){
+  if(riddleIdx >= riddleOrder.length){ shuffleRiddleOrder(); riddleIdx = 0; }
+  const r = riddles[riddleOrder[riddleIdx]];
+  riddleIdx++;
+  document.getElementById('riddleClues').innerHTML = r.clues.map(c=>`🔹 ${c}`).join('<br>');
+  const cEl = document.getElementById('riddleChoices');
+  cEl.innerHTML = '';
+  r.options.sort(()=>Math.random()-0.5).forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.style.fontSize = '15px';
+    btn.textContent = opt;
+    btn.onclick = ()=>{
+      cEl.querySelectorAll('button').forEach(b=>b.disabled=true);
+      if(opt === r.answer){ btn.classList.add('correct'); earnStar(); }
+      else{ btn.classList.add('wrong'); }
+      setTimeout(newRiddle, 1200);
+    };
+    cEl.appendChild(btn);
+  });
+}
+newRiddle();
+
+/* ---------- VOCABULARY QUIZ ---------- */
+const vocabBank = [
+  {word:'écailles', meaning:'Les petites plaques sur la peau d\'un poisson', wrong:['Les dents d\'un animal','Les pattes d\'un chien'], emoji:'🐟'},
+  {word:'scintiller', meaning:'Briller doucement, comme des petites étoiles', wrong:['Courir très vite','Faire du bruit'], emoji:'✨'},
+  {word:'renifler', meaning:'Sentir quelque chose avec son nez', wrong:['Regarder attentivement','Sauter très haut'], emoji:'👃'},
+  {word:'patauger', meaning:'Jouer ou marcher dans l\'eau peu profonde', wrong:['Courir dans l\'herbe','Dormir profondément'], emoji:'💧'},
+  {word:'goûter', meaning:'Un petit repas pris l\'après-midi', wrong:['Un jeu du soir','Une promenade'], emoji:'☕'},
+  {word:'timide', meaning:'Qui a du mal à parler aux autres, un peu gêné', wrong:['Très en colère','Extrêmement rapide'], emoji:'😳'},
+  {word:'abandonné', meaning:'Laissé seul, sans personne pour s\'en occuper', wrong:['Rangé soigneusement','Décoré avec des couleurs'], emoji:'📦'},
+  {word:'effrayant', meaning:'Qui fait peur', wrong:['Qui fait rire','Qui fait dormir'], emoji:'😱'},
+  {word:'aboyer', meaning:'Le bruit que fait un chien', wrong:['Le bruit que fait un chat','Le bruit que fait un oiseau'], emoji:'🐕'},
+  {word:'écureuil', meaning:'Un petit animal qui grimpe aux arbres et mange des noisettes', wrong:['Un poisson coloré','Un gros chien'], emoji:'🐿️'},
+];
+function renderWordOfDay(){
+  const idx = new Date().getDate() % vocabBank.length;
+  const w = vocabBank[idx];
+  document.getElementById('wodWord').textContent = `${w.emoji} ${w.word}`;
+  document.getElementById('wodMeaning').textContent = w.meaning;
+}
+renderWordOfDay();
+let vqScore = 0, vqTotal = 0, currentVQ = null, lastVQIndex = -1;
+function newVocabQuiz(){
+  let idx;
+  do{ idx = Math.floor(Math.random()*vocabBank.length); } while(idx === lastVQIndex && vocabBank.length > 1);
+  lastVQIndex = idx;
+  currentVQ = vocabBank[idx];
+  document.getElementById('vqproblem').textContent = `Que veut dire "${currentVQ.word}" ?`;
+  const opts = [currentVQ.meaning, ...currentVQ.wrong].sort(()=>Math.random()-0.5);
+  const cEl = document.getElementById('vqchoices');
+  cEl.innerHTML = '';
+  opts.forEach(opt=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.style.fontSize = '14px';
+    btn.style.textAlign = 'left';
+    btn.textContent = opt;
+    btn.onclick = ()=>checkVocab(opt, btn);
+    cEl.appendChild(btn);
+  });
+}
+function checkVocab(val, btn){
+  vqTotal++;
+  if(val === currentVQ.meaning){
+    btn.classList.add('correct'); vqScore++;
+    earnStar();
+  } else {
+    btn.classList.add('wrong');
+  }
+  document.getElementById('vqscoreline').textContent = `Score : ${vqScore} / ${vqTotal}`;
+  document.getElementById('vqnum').textContent = vqTotal+1;
+  setTimeout(newVocabQuiz, 900);
+}
+newVocabQuiz();
+
+/* ---------- MATHS ---------- */
+let mathScore = 0, mathTotal = 0, currentAnswer = 0;
+function newProblem(){
+  const a = Math.floor(Math.random()*9)+2;
+  const b = Math.floor(Math.random()*9)+2;
+  currentAnswer = a*b;
+  document.getElementById('problem').textContent = `${a} × ${b} = ?`;
+  const choices = new Set([currentAnswer]);
+  while(choices.size<4){
+    choices.add(currentAnswer + (Math.floor(Math.random()*9)-4 || 1));
+  }
+  const arr = [...choices].sort(()=>Math.random()-0.5);
+  const cEl = document.getElementById('choices');
+  cEl.innerHTML = '';
+  arr.forEach(val=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = val;
+    btn.onclick = ()=>checkAnswer(val, btn);
+    cEl.appendChild(btn);
+  });
+}
+function checkAnswer(val, btn){
+  mathTotal++;
+  if(val===currentAnswer){
+    btn.classList.add('correct'); mathScore++;
+    earnStar();
+  } else {
+    btn.classList.add('wrong');
+  }
+  document.getElementById('scoreline').textContent = `Score : ${mathScore} / ${mathTotal}`;
+  document.getElementById('qnum').textContent = mathTotal+1;
+  setTimeout(newProblem, 900);
+}
+newProblem();
+
+/* ---------- ÉTOILES (reward system) ---------- */
+let totalStars = 0;
+function loadStars(){
+  try{
+    const val = localStorage.getItem('total-stars');
+    totalStars = val ? parseInt(val) || 0 : 0;
+  }catch(e){ totalStars = 0; }
+  renderStarBadge();
+  buildSwatches();
+}
+function saveStars(){
+  try{ localStorage.setItem('total-stars', String(totalStars)); }
+  catch(e){ console.error('save failed', e); }
+}
+function earnStar(){
+  totalStars++;
+  saveStars();
+  renderStarBadge();
+  checkNewUnlocks();
+  buildSwatches();
+  showStarPopup();
+}
+function checkNewUnlocks(){
+  [...colors, ...accessories].forEach(item=>{
+    if(item.unlock === totalStars){
+      showUnlockCelebration(item.label);
+    }
+  });
+}
+function showUnlockCelebration(label){
+  const overlay = document.createElement('div');
+  overlay.className = 'unlock-overlay';
+  overlay.innerHTML = `
+    <div class="unlock-card">
+      <div class="unlock-confetti">🎉✨🎊</div>
+      <div class="unlock-title">Nouveau débloqué !</div>
+      <div class="unlock-item">${label}</div>
+      <button class="nav-btn" onclick="this.closest('.unlock-overlay').remove()">Super !</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
+function renderStarBadge(){
+  const el = document.getElementById('starBadge');
+  if(el) el.textContent = `⭐ ${totalStars}`;
+}
+function showStarPopup(){
+  const p = document.createElement('div');
+  p.className = 'star-popup';
+  p.textContent = '⭐ +1 !';
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(), 1000);
+}
+
+/* ---------- GRAMMAIRE QUIZ ---------- */
+const grammarItems = [
+  {word:'chien', gender:'m'}, {word:'maison', gender:'f'}, {word:'chat', gender:'m'},
+  {word:'école', gender:'f'}, {word:'poisson', gender:'m'}, {word:'table', gender:'f'},
+  {word:'ballon', gender:'m'}, {word:'fleur', gender:'f'}, {word:'livre', gender:'m'},
+  {word:'pomme', gender:'f'}
+];
+let gScore = 0, gTotal = 0, currentG = null;
+function newGrammar(){
+  currentG = grammarItems[Math.floor(Math.random()*grammarItems.length)];
+  document.getElementById('gproblem').textContent = `___ ${currentG.word}`;
+  const opts = currentG.gender==='m' ? ['mon','ma'] : ['ma','mon'];
+  const cEl = document.getElementById('gchoices');
+  cEl.innerHTML = '';
+  opts.sort(()=>Math.random()-0.5).forEach(val=>{
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    btn.textContent = val;
+    btn.onclick = ()=>checkGrammar(val, btn);
+    cEl.appendChild(btn);
+  });
+}
+function checkGrammar(val, btn){
+  gTotal++;
+  const correct = currentG.gender==='m' ? 'mon' : 'ma';
+  if(val===correct){
+    btn.classList.add('correct'); gScore++;
+    earnStar();
+  } else {
+    btn.classList.add('wrong');
+  }
+  document.getElementById('gscoreline').textContent = `Score : ${gScore} / ${gTotal}`;
+  document.getElementById('gqnum').textContent = gTotal+1;
+  setTimeout(newGrammar, 900);
+}
+newGrammar();
+loadStars();
+
+/* ---------- PET GAME ---------- */
+const petTypes = [
+  {emoji:'🐠', label:'Poisson'},
+  {emoji:'🐕', label:'Chien'},
+];
+const colors = [
+  {label:'Orange', filter:'none', unlock:0},
+  {label:'Bleu', filter:'hue-rotate(160deg)', unlock:3},
+  {label:'Violet', filter:'hue-rotate(250deg)', unlock:6},
+  {label:'Rose', filter:'hue-rotate(300deg) saturate(1.4)', unlock:10},
+];
+const accessories = [
+  {label:'✨ Aucun', unlock:0},
+  {label:'🎀 Noeud', unlock:2},
+  {label:'👑 Couronne', unlock:8},
+  {label:'🕶️ Lunettes', unlock:5},
+];
+let selectedPet = 0, selectedColor = 0, selectedAccessory = 0;
+
+function buildSwatches(){
+  const typeRow = document.getElementById('petTypeRow');
+  typeRow.innerHTML='';
+  petTypes.forEach((p,i)=>{
+    const s = document.createElement('div');
+    s.className = 'swatch' + (i===selectedPet?' selected':'');
+    s.textContent = p.emoji;
+    s.onclick = ()=>{ selectedPet=i; buildSwatches(); renderPet(); };
+    typeRow.appendChild(s);
+  });
+  const colorRow = document.getElementById('colorRow');
+  colorRow.innerHTML='';
+  colors.forEach((c,i)=>{
+    const locked = (totalStars||0) < c.unlock;
+    const s = document.createElement('div');
+    s.className = 'swatch' + (i===selectedColor?' selected':'') + (locked?' locked':'');
+    s.innerHTML = locked ? `🔒<span class="unlock-tag">${c.unlock}⭐</span>` : '🎨';
+    if(!locked) s.style.filter = c.filter;
+    s.onclick = ()=>{ if(locked) return; selectedColor=i; buildSwatches(); renderPet(); };
+    colorRow.appendChild(s);
+  });
+  const accRow = document.getElementById('accessoryRow');
+  accRow.innerHTML='';
+  accessories.forEach((a,i)=>{
+    const locked = (totalStars||0) < a.unlock;
+    const s = document.createElement('div');
+    s.className = 'swatch' + (i===selectedAccessory?' selected':'') + (locked?' locked':'');
+    s.innerHTML = locked ? `🔒<span class="unlock-tag">${a.unlock}⭐</span>` : a.label.split(' ')[0];
+    s.onclick = ()=>{ if(locked) return; selectedAccessory=i; buildSwatches(); renderPet(); };
+    accRow.appendChild(s);
+  });
+}
+function renderPet(){
+  const el = document.getElementById('petDisplay');
+  el.style.filter = colors[selectedColor].filter;
+  const acc = selectedAccessory>0 ? ' ' + accessories[selectedAccessory].label.split(' ')[0] : '';
+  el.textContent = petTypes[selectedPet].emoji + acc;
+}
+buildSwatches();
+renderPet();
+
+/* ---------- PROGRES (with persistent storage) ---------- */
+const defaultTasks = [
+  {id:'t1', text:'Lire une histoire', done:false},
+  {id:'t2', text:'Écrire 3 phrases', done:false},
+  {id:'t3', text:'Table de multiplication (x3)', done:false},
+  {id:'t4', text:'Ajouter 3 mots au carnet de vocabulaire', done:false},
+];
+let tasks = defaultTasks;
+
+function loadTasks(){
+  try{
+    const val = localStorage.getItem('weekly-tasks');
+    if(val){ tasks = JSON.parse(val); }
+  }catch(e){ /* no saved tasks yet, use defaults */ }
+  renderTasks();
+}
+function saveTasks(){
+  try{ localStorage.setItem('weekly-tasks', JSON.stringify(tasks)); }
+  catch(e){ console.error('save failed', e); }
+}
+function renderTasks(){
+  const list = document.getElementById('taskList');
+  list.innerHTML='';
+  tasks.forEach(t=>{
+    const row = document.createElement('div');
+    row.className = 'task-item';
+    row.innerHTML = `<div class="task-check ${t.done?'done':''}">${t.done?'✓':''}</div><div class="task-text ${t.done?'done':''}">${t.text}</div>`;
+    row.querySelector('.task-check').onclick = ()=>{
+      t.done = !t.done;
+      renderTasks();
+      saveTasks();
+    };
+    list.appendChild(row);
+  });
+  const starEl = document.getElementById('starCount');
+  const count = tasks.filter(t=>t.done).length;
+  starEl.textContent = `⭐ ${count} étoile${count!==1?'s':''} cette semaine`;
+}
+loadTasks();
+</script>
+
+</body>
+</html>
